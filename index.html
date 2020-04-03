@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:50,200,400" rel="stylesheet">
+    <link rel="shortcut icon" href="propellor.ico" type="image/x-icon">
+    <title>The Big Picture</title>
+    <style>
+        *{
+            font-family: "Montserrat"
+        }
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+        }
+
+        div.topnav {
+            background-color: white;
+            position: fixed;
+            width: 100vw;
+            display: flex;
+            flex-flow: row;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .tpnv-element {
+            font-weight: 200;
+            padding: 0.25em;
+            padding-right: 0.5em;
+            padding-left: 0.5em;
+        }
+
+        div.sec1 {
+            height: 100vh;
+            width: 100%;
+        }
+
+        h2#A2H {
+            margin-left: 2em;
+            margin-right: auto;
+        }
+
+        h2#by {
+            margin-right: 2em;
+            font-size: 20px;
+        }
+
+        h1#title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            margin-top: 45vh;
+            font-weight: 400;
+            font-size: 90px;
+            white-space: nowrap;
+            color: white;
+            border: 1px white solid;
+            padding: 10px;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+
+        div.cover-image {
+            height: 100vh;
+            width: 100%;
+            z-index: -1;
+            position: fixed;
+            background-image: url('bay.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        svg#wave1 {
+            display: block;
+        }
+
+        path#wave1-path {
+            animation: wave linear infinite alternate;
+            animation-duration: 50s;
+        }
+
+        @keyframes wave {
+            0% {
+                d: path("M0,192L34.3,197.3C68.6,203,137,213,206,213.3C274.3,213,343,203,411,192C480,181,549,171,617,181.3C685.7,192,754,224,823,245.3C891.4,267,960,277,1029,272C1097.1,267,1166,245,1234,240C1302.9,235,1371,245,1406,250.7L1440,256L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z");
+            }
+
+            50% {
+                d: path("M0,96L34.3,133.3C68.6,171,137,245,206,245.3C274.3,245,343,171,411,165.3C480,160,549,224,617,213.3C685.7,203,754,117,823,101.3C891.4,85,960,139,1029,186.7C1097.1,235,1166,277,1234,266.7C1302.9,256,1371,192,1406,160L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z");
+            }
+
+            100% {
+                d: path("M0,192L34.3,170.7C68.6,149,137,107,206,117.3C274.3,128,343,192,411,181.3C480,171,549,85,617,80C685.7,75,754,149,823,154.7C891.4,160,960,96,1029,80C1097.1,64,1166,96,1234,112C1302.9,128,1371,128,1406,128L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z");
+            }
+        }
+
+        div.content {
+            background-color: white;
+        }
+
+
+
+        * {
+            box-sizing: border-box
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            width: 80vw;
+            position: relative;
+            margin: 0px 0px 30px 30px;
+        }
+
+        /* Hide the images by default */
+        .mySlides {
+            display: none;
+        }
+
+        img {
+            display: block;
+
+        }
+
+        /* Next & previous buttons */
+        .prev,
+        .next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -22px;
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+            transition: 0.6s ease;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+        }
+
+        /* Position the "next button" to the right */
+        .next {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+
+        /* Caption text */
+        .text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 19px 15px;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+            backdrop-filter: brightness(0.2);
+        }
+
+
+        /* Number text (1/3 etc) */
+        .numbertext {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        /* The dots/bullets/indicators */
+        .dot {
+            cursor: pointer;
+            height: 15px;
+            width: 15px;
+            margin: 0 2px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            transition: background-color 0.6s ease;
+        }
+
+        .active,
+        .dot:hover {
+            background-color: #717171;
+        }
+
+        /* Fading animation */
+        .fade {
+            -webkit-animation-name: fade;
+            -webkit-animation-duration: 1.5s;
+            animation-name: fade;
+            animation-duration: 1.5s;
+        }
+
+
+        @-webkit-keyframes fade {
+            from {
+                filter: brightness(.2), saturation(0.1)
+            }
+
+            to {
+                filter: brightness(1)
+            }
+        }
+
+        @keyframes fade {
+            from {
+                filter: brightness(.2)
+            }
+
+            to {
+                filter: brightness(1)
+            }
+        }
+
+
+        div.footer-flex {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+            padding-right: 20px;
+            padding-left: 20px;
+        }
+
+        div.footer {
+            font-weight: 200;
+            font-size: 20px;
+            color: black;
+        }
+
+        hr {
+            margin: 0px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1#footerlink {
+            text-align: center;
+            font-weight: 200;
+            font-size: 20px;
+            margin: 0px;
+
+            color: black;
+        }
+
+        .flex {
+            display: flex;
+            align-items: top;
+            justify-content: center;
+        }
+        
+        #map {
+            border-radius: 0px 20px 20px 0px;
+            height: 500px;  /* The height is 400 pixels */
+            width: 0px;  /* The width is the width of the web page */
+            margin-right: 30px;
+            border: 0px solid lightgray;
+            transition: 2s width ease-out;
+       }
+
+        div.incPadding{
+            cursor:pointer;
+            border: 0.5px solid black;
+            border-radius: 25px;
+            padding: 1em;
+            padding-right: 2em;
+            padding-left: 2em;
+            transition: all ease-in-out 0.1s;
+        }
+        div.incPadding:hover{
+            padding-right: 2.2em;
+            padding-left: 2.2em;
+        }
+        #locate{
+            margin-bottom: 2em;
+        }
+        div.block1,
+        .block2 {
+            padding: 3em;
+        }
+        div.rect{
+            border: 0.5px solid lightgray;
+            margin-top: 2em;
+            border-radius: 25px;
+        }
+        div.textcontain{
+            padding: 2em;
+        }
+        div.textcontain>h1 {
+            font-family: 'Montserrat';
+            font-weight: 200;
+        }
+
+        div.textcontain>p {
+            line-height: 2em;
+            font-family: 'Lato', sans-serif;
+        }
+        p > img{
+            margin-top:3em;
+            margin-bottom: 3em;
+            margin-left: auto;
+            margin-right: auto;
+            width: 70vw;
+        }
+        /* d="M0,192L34.3,197.3C68.6,203,137,213,206,213.3C274.3,213,343,203,411,192C480,181,549,171,617,181.3C685.7,192,754,224,823,245.3C891.4,267,960,277,1029,272C1097.1,267,1166,245,1234,240C1302.9,235,1371,245,1406,250.7L1440,256L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z" */
+        /* d="M0,192L34.3,170.7C68.6,149,137,107,206,117.3C274.3,128,343,192,411,181.3C480,171,549,85,617,80C685.7,75,754,149,823,154.7C891.4,160,960,96,1029,80C1097.1,64,1166,96,1234,112C1302.9,128,1371,128,1406,128L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z" */
+    </style>
+
+</head>
+
+<body>
+    <div class="topnav">
+        <h2 class="tpnv-element" id="A2H">My American Moment</h2>
+        <h2 class="tpnv-element" id="by">By Riley Crymble</h2>
+    </div>
+    <div class="sec1">
+        <h1 id="title">The Big Picture</h1>
+        <div class="cover-image">
+
+        </div>
+    </div>
+    <svg id="wave1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path id="wave1-path" fill="#ffffff" fill-opacity="1"
+            d="M0,192L34.3,170.7C68.6,149,137,107,206,117.3C274.3,128,343,192,411,181.3C480,171,549,85,617,80C685.7,75,754,149,823,154.7C891.4,160,960,96,1029,80C1097.1,64,1166,96,1234,112C1302.9,128,1371,128,1406,128L1440,128L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+        </path>
+    </svg>
+
+    <div class="content">
+
+
+    <div class="block1">
+            <div class="rect">
+                <div class="textcontain">
+                <h1> Intro </h1>
+                <p> During this time, there has been a constant flood of news, statistics, and dreary predictions for the future. However, what always catches my eye are the photos of once busy places that are now suddenly empty:
+
+        For example, The Great Mosque of Mecca, Saudi Arabia:
+
+<img src="mecca.png"> </img>
+
+
+Or New York Street, New York:
+
+<img src="york.png"> </img>
+Although it may look scary to some, I think it is nice that the earth gets a break from the constant noise and smog that some of these places produce. For this project, I set out to take similar photos of my neighborhood. I especially was looking for busy places like tennis courts, playgrounds, and street intersections). I took all the pictures with my drone to capture the same aerial perspective as the above photos. For each photo, I have marked the image's location on a map so you know exactly where the photo was taken. Hopefully, they will help bring the outside world to those who are feeling cooped up indoors. Take a look:
+
+                </p>
+            </div>
+        </div>
+    </div>
+        
+
+        <!-- Slideshow container -->
+        <div class="flex">
+        <div class="slideshow-container">
+
+            <!-- Full-width images with number and caption text -->
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">1 / 8</div>
+                    <img src="tennis.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">I have often played on this nearby tennis court. However, for most of the
+                        past few weeks, it has sat empty, acculumating dust and leaves.</div>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">2/ 8</div>
+                    <img src="gas.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">This gas station is on the busiest street near my house, but with no one needing gas, the area now has an apocalyptic feel. The only people in this photo are me, my mom, and a jogger, all by the bus stop.</div>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">3/ 8</div>
+                    <img src="basketball.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">Close to the tennis courts, this basketball court is also empty, with most people prefering to jog instead of play sports. </div>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">4 / 8</div>
+                    <img src="intersect.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">Like many aroung the world, this intersection sees few cars now.</div>
+                </div>
+            </div>
+            
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">5 / 8</div>
+                    <img src="play.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">The setting sun hits this sad looking playground. Both the swing set and one of the platforms is wrapped in yellow caution tape.</div>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">6/ 8</div>
+                    <img src="end.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">Few people leave their houses, with cars remaining idle for weeks.</div>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">7/ 8</div>
+                    <img src="reservoir.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">This long barren road along the reserviour remindes me of the photo of New York.</div>
+                </div>
+            </div>
+
+            <div class="mySlides">
+                <div class="fade">
+                    <div class="numbertext">8/ 8</div>
+                    <img src="bay.jpg" style="width:100%">
+                </div>
+                <div class="text">
+                    <div class="inner-text">This photo is a view of my entire neighborhood, looking out toward San Fransicso</div>
+                </div>
+            </div>
+
+
+
+            <!-- gas, basketball, intersect, play, end, reserviour, bay -->
+
+
+            <!-- Next and previous buttons -->
+            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+            <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <iframe id="map" src="" width="600" height="450" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    </div>
+    
+        <br>
+
+        <!-- The dots/circles -->
+        
+        <div style="text-align:center; transform: translateY(-100%);">
+            <span class="dot" onclick="currentSlide(1)"></span>
+            <span class="dot" onclick="currentSlide(2)"></span>
+            <span class="dot" onclick="currentSlide(3)"></span>
+            <span class="dot" onclick="currentSlide(4)"></span>
+            <span class="dot" onclick="currentSlide(5)"></span>
+            <span class="dot" onclick="currentSlide(6)"></span>
+            <span class="dot" onclick="currentSlide(7)"></span>
+            <span class="dot" onclick="currentSlide(8)"></span>
+        </div>
+        <div id="locate" class="flex" onclick="showLocate()"> <div class="incPadding"><h1 id="footerlink">Show Image Location </h1></div></div>
+        
+        <div class="block2">
+            <div class="rect">
+                <div class="textcontain">
+                <h1> Self Reflection </h1>
+                <p> This project was a good excuse to get outside and do something I love: flying drones. When I first went outside to take photos, I went to the tennis courts and basketball courts. I was initially alarmed at how many people were ouside. People were chatting with friends, playing soccor, and bringing their kids to the park.
+                    This was quite unexpected, as I though there was only going to be a few people walking. Eventually I found places like the gas station and playground that were truly barren. I think the photos turned out just the way I had hoped: empty streets, quiet parks, and the eerie feeling that comes with abandoned places. Hopefully I can continue to fly my drone and add to my collection!
+                </p>
+            </div>
+        </div>
+    </div>
+        <div class="footer">
+            <hr></hr>
+
+            <div class="footer-flex">
+                <p> English 10 </p>
+                <p> 2020</p>
+            </div>
+
+        </div>
+    </div>
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            document.getElementById("map").src = ""
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) {
+                slideIndex = 1
+            }
+            if (n < 1) {
+                slideIndex = slides.length
+            }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            let links = [
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1590.905370601083!2d-122.26386807899301!3d37.886017838554984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80857c1d3b66b30d%3A0x892e285302b4b1f3!2sRose%20Garden%20Tennis%20Courts!5e0!3m2!1sen!2sus!4v1585869329009!5m2!1sen!2sus",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d598.9808556769411!2d-122.27927956853888!3d37.89110371688801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80857eb2d24011fb%3A0x9ef7063219f0f5dc!2s76!5e0!3m2!1sen!2sus!4v1585872188017!5m2!1sen!2sus",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d720.3143418577558!2d-122.2624698306898!3d37.885650981360996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x21aff440ca8165ae!2sCodornices%20Park!5e0!3m2!1sen!2sus!4v1585872060839!5m2!1sen!2sus",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.0277720469727!2d-122.2701541707706!3d37.90446605691375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU0JzE2LjEiTiAxMjLCsDE2JzEwLjYiVw!5e0!3m2!1sen!2sus!4v1585872347849!5m2!1sen!2sus",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.1560529717033!2d-122.28209317077058!3d37.892470057086406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDUzJzMyLjkiTiAxMjLCsDE2JzUzLjYiVw!5e0!3m2!1sen!2sus!4v1585872573382!5m2!1sen!2sus",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1574.013557007703!2d-122.26972204401113!3d37.90642892971515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU0JzIzLjEiTiAxMjLCsDE2JzA3LjQiVw!5e0!3m2!1sen!2sus!4v1585872716723!5m2!1sen!2sus",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1574.029087807365!2d-122.27059707458818!3d37.905702883580645!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU0JzIwLjUiTiAxMjLCsDE2JzEwLjYiVw!5e0!3m2!1sen!2sus!4v1585872776500!5m2!1sen!2sus",
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d787.0277720469727!2d-122.2701541707706!3d37.90446605691375!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU0JzE2LjEiTiAxMjLCsDE2JzEwLjYiVw!5e0!3m2!1sen!2sus!4v1585872347849!5m2!1sen!2sus",
+            ]
+            
+            document.getElementById("map").src = links[slideIndex-1];
+            dots[slideIndex - 1].className += " active";
+        }
+
+
+    let loc = false;
+
+    function showLocate(){
+        if(loc==false){
+            document.getElementById("map").style.width = "30%";
+            document.getElementById("map").style.borderWidth = "1px";
+            document.getElementById("footerlink").innerHTML = "Hide Image Location"
+            loc = true;
+        }
+        else if(loc==true){
+            document.getElementById("map").style.width = "0px";
+            document.getElementById("map").style.borderWidth = "0px";
+            document.getElementById("footerlink").innerHTML = "Show Image Location"
+            loc = false;
+        }
+    }
+
+    </script>
+    
+</body>
+
+</html>
